@@ -10,8 +10,7 @@ import kotlinx.coroutines.launch
 
 class PeopleScreenViewModel : ViewModel() {
     private val peopleService = RetrofitClient.service
-
-    val people : MutableStateFlow<List<Person>> = MutableStateFlow(listOf())
+    val peopleStateFlow: MutableStateFlow<List<Person>> = MutableStateFlow(listOf())
 
     init {
         getPeople()
@@ -23,14 +22,13 @@ class PeopleScreenViewModel : ViewModel() {
                 val result = peopleService.getPeople()
 
                 if (result.isSuccessful && result.body() != null) {
-                    val peopleResult = result.body()!!.people
-                    people.tryEmit(peopleResult)
+                    peopleStateFlow.tryEmit(result.body()!!.people)
                 } else {
-                    // TODO: emit error state
+                    // If there is any issue, just log error. Improve this by using a UiState object with Loading, Error, and Success states
                     Log.d("moltag", "getPeople: error state response from peopleService")
                 }
             } catch (e: Exception) {
-                Log.d("moltag", "getPeople: caught error: $e")
+                Log.d("moltag", "getPeople: caught exception: $e")
             }
         }
     }

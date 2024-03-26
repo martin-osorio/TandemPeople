@@ -4,5 +4,5 @@ import com.google.gson.annotations.SerializedName
 
 data class PeopleResponse(
     @SerializedName("people")
-    val people: List<Person>
+    val people: List<Person>,
 )

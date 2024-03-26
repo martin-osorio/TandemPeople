@@ -8,7 +8,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 object RetrofitClient {
-    private val baseUrl = "https://gist.githubusercontent.com/russellbstephens/"
+    private const val baseUrl = "https://gist.githubusercontent.com/russellbstephens/"
 
     private val gson = GsonBuilder()
         .setLenient()

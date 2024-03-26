@@ -7,5 +7,5 @@ data class Person(
     val name: String,
 
     @SerializedName("language")
-    val language: String?
+    val language: String?,
 )

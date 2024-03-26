@@ -1,3 +1,11 @@
 package com.martinosorio.tandemtwo.model
 
-data class Person(val name: String, val language: String?)
+import com.google.gson.annotations.SerializedName
+
+data class Person(
+    @SerializedName("name")
+    val name: String,
+
+    @SerializedName("language")
+    val language: String?,
+)
